@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Welcome to the Counter App</h1>
+    <p>You have visited this site {{ visit_count }} times.</p>
+    <p>Counter: {{ counter }}</p>
+    
+    <a href="{% url 'destroy_session' %}">Reset Session</a>
+    <a href="{% url 'increment_counter' 2 %}">+2</a>
+    
+    <form action="{% url 'increment_counter' 1 %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="amount" value="1" min="1">
+        <button type="submit">Increment</button>
+    </form>
+</body>
+</html>

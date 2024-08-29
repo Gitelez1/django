@@ -1,0 +1,53 @@
+# Import models
+from dojo_ninjas_app.models import Dojo, Ninja
+
+# Query: Create 3 new dojos
+dojo1 = Dojo.objects.create(name="Dojo 1")
+dojo2 = Dojo.objects.create(name="Dojo 2")
+dojo3 = Dojo.objects.create(name="Dojo 3")
+
+# Query: Delete the 3 dojos you just created
+Dojo.objects.filter(name__in=["Dojo 1", "Dojo 2", "Dojo 3"]).delete()
+
+# Query: Create 3 more dojos
+dojo1 = Dojo.objects.create(name="Dojo 1")
+dojo2 = Dojo.objects.create(name="Dojo 2")
+dojo3 = Dojo.objects.create(name="Dojo 3")
+
+# Query: Create 3 ninjas that belong to the first dojo
+Ninja.objects.create(first_name="Ninja1", last_name="One", dojo=dojo1)
+Ninja.objects.create(first_name="Ninja2", last_name="Two", dojo=dojo1)
+Ninja.objects.create(first_name="Ninja3", last_name="Three", dojo=dojo1)
+
+# Query: Create 3 ninjas that belong to the second dojo
+Ninja.objects.create(first_name="Ninja4", last_name="Four", dojo=dojo2)
+Ninja.objects.create(first_name="Ninja5", last_name="Five", dojo=dojo2)
+Ninja.objects.create(first_name="Ninja6", last_name="Six", dojo=dojo2)
+
+# Query: Create 3 ninjas that belong to the third dojo
+Ninja.objects.create(first_name="Ninja7", last_name="Seven", dojo=dojo3)
+Ninja.objects.create(first_name="Ninja8", last_name="Eight", dojo=dojo3)
+Ninja.objects.create(first_name="Ninja9", last_name="Nine", dojo=dojo3)
+
+# Query: Retrieve all the ninjas from the first dojo
+ninjas_in_dojo1 = Ninja.objects.filter(dojo=dojo1)
+
+# Query: Retrieve all the ninjas from the last dojo
+ninjas_in_dojo3 = Ninja.objects.filter(dojo=dojo3)
+
+# Query: Retrieve the last ninja's dojo
+last_ninja = Ninja.objects.last()
+last_ninja_dojo = last_ninja.dojo
+
+# Add a new text field called "desc" to your Dojo class and apply migration
+# (This step is already added to your models above)
+
+# Create and run migration files to update the table in your database
+# Create migrations
+python manage.py makemigrations dojo_ninjas_app
+
+# Apply migrations
+python manage.py migrate
+
+# Query: Create a new dojo
+new_dojo = Dojo.objects.create(name="New Dojo")

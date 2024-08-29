@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a New TV Show</h1>
+<form action="/shows/create" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}<br>
+            {{ field }}<br>
+            {% if field.errors %}
+                <div style="color: red;">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Add Show">
+</form>
+<a href="{% url 'new' %}">Back to All Shows</a>
+
+</body>
+</html>

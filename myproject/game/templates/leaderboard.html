@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <ul>
+        {% for entry in entries %}
+            <li>{{ entry.name }} - {{ entry.attempts }} attempts</li>
+        {% empty %}
+            <li>No entries yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'start_game' %}">Play Again</a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit {{ show.title }}</title>
+  </head>
+<body>
+    <h1>Edit TV Show</h1>
+    <form action="{% url 'update_show' show.id %}" method="POST">
+        {% csrf_token %} {% for field in form %}
+        <div>
+        {{ field.label_tag }}<br />
+        {{ field }}<br />
+        {% if field.errors %}
+        <div style="color: red">{{ field.errors }}</div>
+        {% endif %}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Update Show" />
+    </form>
+    <a href="/shows/{{ show.id }}">Cancel</a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        $("#id_title").on("blur", function () {
+            var title = $(this).val();
+            $.ajax({
+            url: "/shows/check_title/",
+            data: {
+                title: title,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.is_taken) {
+                $("#id_title").after(
+                    '<div style="color: red;">This title already exists.</div>'
+                );
+                }
+            },
+            });
+        });
+        });
+    </script>
+</body>
+</html>

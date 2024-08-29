@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get-Post</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div>
+        <h1>GET | POST</h1>
+    </div>
+    <form action="/some_route" method="post">
+        {% csrf_token %}
+        <p>Field One: <input name="one" type="text"></p>
+        <p>Field Two: <input name="two" type="text"></p>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

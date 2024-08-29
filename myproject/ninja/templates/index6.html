@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <h1>Ninja Gold Game</h1>
+    <h2>Your gold: {{ gold }}</h2>
+    <form action="{% url 'process_money' 'farm' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="location" value="farm">
+        <input type="submit" value="Find Gold in Farm">
+    </form>
+    <form action="{% url 'process_money' 'cave' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="location" value="cave">
+        <input type="submit" value="Find Gold in Cave">
+    </form>
+    <form action="{% url 'process_money' 'house' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="location" value="house">
+        <input type="submit" value="Find Gold in House">
+    </form>
+    <form action="{% url 'process_money' 'casino' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="location" value="casino">
+        <input type="submit" value="Try Your Luck in Casino">
+    </form>
+    
+
+    <h2>Activities:</h2>
+    <ul>
+        {% for activity in activities %}
+            <li>{{ activity }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

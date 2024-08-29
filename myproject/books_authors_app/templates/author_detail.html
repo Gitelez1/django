@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+<p>{{ author.notes }}</p>
+<h2>Books</h2>
+<ul>
+    {% for book in books %}
+        <li><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'author_list' %}">Back to Author List</a>
+
+</body>
+</html>

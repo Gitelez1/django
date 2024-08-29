@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dojos and Ninjas</title>
+</head>
+<body>
+    <h1>Dojos</h1>
+    {% for dojo in dojos %}
+        <h2>{{ dojo.name }} - Ninjas: {{ dojo.ninjas.count }}</h2>
+        <ul>
+            {% for ninja in dojo.ninjas.all %}
+                <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
+            {% endfor %}
+        </ul>
+        <form action="{% url 'delete_dojo' dojo.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    {% endfor %}
+
+    <h2>Add a New Dojo</h2>
+    <form action="{% url 'create_dojo' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Dojo name">
+        <button type="submit">Add Dojo</button>
+    </form>
+
+    <h2>Add a New Ninja</h2>
+    <form action="{% url 'create_ninja' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <select name="dojo_id">
+            {% for dojo in dojos %}
+                <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add Ninja</button>
+    </form>
+</body>
+</html>

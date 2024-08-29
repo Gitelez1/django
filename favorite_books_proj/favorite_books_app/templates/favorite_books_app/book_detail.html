@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Detail</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ book.title }}</h1>
+    <p>{{ book.desc }}</p>
+    <p>Uploaded by: {{ book.uploaded_by.username }}</p>
+
+    <h3>Favorited by:</h3>
+    <ul class="list-group">
+        {% for user in book.users_who_like.all %}
+        <li class="list-group-item">{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if is_favorited %}
+    <a href="{% url 'unfavorite_book' book.id %}" class="btn btn-danger mt-3">Unfavorite</a>
+    {% else %}
+    <a href="{% url 'favorite_book' book.id %}" class="btn btn-success mt-3">Favorite</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+</body>
+</html>

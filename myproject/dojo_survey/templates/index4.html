@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <!-- Optional: Include a CSS framework like Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dojo Survey</h1>
+        <form action="/dojo/form_post/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dojo_location">Dojo Location:</label>
+                <select name="dojo_location" id="dojo_location" class="form-control">
+                    <option value="Burbank">Burbank</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="San Jose">San Jose</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Favorite Language:</label>
+                <div>
+                    <label><input type="radio" name="favorite_language" value="Python"> Python</label>
+                    <label><input type="radio" name="favorite_language" value="JavaScript"> JavaScript</label>
+                    <label><input type="radio" name="favorite_language" value="Ruby"> Ruby</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Comment:</label>
+                <textarea name="comment" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

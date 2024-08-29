@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .user-item {
+            margin-bottom: 10px;
+        }
+        .user-item a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Users</h1>
+    
+    <p><a href="{% url 'register' %}">Register</a></p>
+    <p><a href="{% url 'login' %}">Login</a></p>
+    <p><a href="{% url 'users_list' %}">View All Users</a></p>
+
+    <!-- Assuming you have a list of users available in the context -->
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <li class="user-item">
+                    User: {{ user.username }} - 
+                    <a href="{% url 'view_user' user.id %}">View</a> |
+                    <a href="{% url 'edit_user' user.id %}">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No users available.</p>
+    {% endif %}
+</body>
+</html>

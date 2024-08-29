@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ show.title }}</title>
+</head>
+<body>
+    <h1>{{ show.title }}</h1>
+    <p>{{ show.description }}</p>
+    <a href="/shows/{{ show.id }}/edit">Edit</a>
+    <form action="{% url 'destroy_show' show.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <br>
+    <a href="/shows">Back to Shows</a>
+</body>
+</html>

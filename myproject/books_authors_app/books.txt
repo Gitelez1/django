@@ -1,0 +1,52 @@
+from books_authors_app.models import Book, Author
+
+# Create 5 books
+book_titles = ["C Sharp", "Java", "Python", "PHP", "Ruby"]
+books = [Book.objects.create(title=title) for title in book_titles]
+
+# Create 5 authors
+authors_data = [
+    {"first_name": "Jane", "last_name": "Austen"},
+    {"first_name": "Emily", "last_name": "Dickinson"},
+    {"first_name": "Fyodor", "last_name": "Dostoevsky"},
+    {"first_name": "William", "last_name": "Shakespeare"},
+    {"first_name": "Lao", "last_name": "Tzu"}
+]
+authors = [Author.objects.create(**data) for data in authors_data]
+
+# Change the name of the C Sharp book to C#
+book = Book.objects.get(title="C Sharp")
+book.title = "C#"
+book.save()
+
+# Change the first name of the 4th author to Bill
+author = Author.objects.get(first_name="William")
+author.first_name = "Bill"
+author.save()
+
+# Assign the first author to the first 2 books
+authors[0].books.add(books[0], books[1])
+
+# Assign the second author to the first 3 books
+authors[1].books.add(books[0], books[1], books[2])
+
+# Assign the third author to the first 4 books
+authors[2].books.add(books[0], books[1], books[2], books[3])
+
+# Assign the fourth author to all the books
+authors[3].books.set(books)
+
+# Retrieve all the authors for the 3rd book
+third_book_authors = books[2].authors.all()
+
+# Remove the first author of the 3rd book
+books[2].authors.remove(authors[0])
+
+# Add the 5th author as one of the authors of the 2nd book
+books[1].authors.add(authors[4])
+
+# Find all the books that the 3rd author is part of
+third_author_books = authors[2].books.all()
+
+# Find all the authors that contributed to the 5th book
+fifth_book_authors = books[4].authors.all()

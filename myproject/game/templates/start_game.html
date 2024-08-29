@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Number</title>
+    <style>
+        .message { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess the number between 1 and 100.</p>
+
+    {% if game_status == 'won' %}
+        <p class="success">{{ message }}</p>
+    {% elif game_status == 'lost' %}
+        <p class="message">{{ message }}</p>
+    {% elif game_status == 'playing' %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+
+    <form action="{% url 'guess_number' %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="guess" min="1" max="100" required>
+        <button type="submit">Submit Guess</button>
+    </form>
+
+    {% if game_status == 'playing' %}
+        <p>Attempts remaining: {{ max_attempts - attempts }}</p>
+    {% endif %}
+</body>
+</html>

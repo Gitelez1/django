@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <h3>Thank you for your purchase!</h3>
+        <p>Total charge for your order: ${{ total_charge }}</p>
+        <p>Total items in your order: {{ quantity }}</p>
+        <hr>
+        <h4>All Orders Summary</h4>
+        <p>Total quantity of all orders combined: {{ total_quantity }}</p>
+        <p>Total amount charged for all orders combined: ${{ total_amount }}</p>
+        <a href="/" class="btn btn-primary">Go back to shop</a>
+    </div>
+</body>
+</html>
